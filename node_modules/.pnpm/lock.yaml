@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      lightbox:
+        specifier: ^0.5.0
+        version: 0.5.0
+
+packages:
+
+  lightbox@0.5.0:
+    resolution: {integrity: sha512-BB6XoNgq+icookOeXt5BVVpEwSxslacmlrBlhsr4PpoahVOBo/lVGShyIl5nlGQ/aMFOC6ULNRUwwtjTJDE/SA==}
+
+snapshots:
+
+  lightbox@0.5.0: {}
