@@ -13,7 +13,7 @@ galleryItems.forEach((e) => {
 	gallery.insertAdjacentHTML('beforeend', img);
 });
 
-// Opening modal
+// Opening modal & close modal
 gallery.addEventListener('click',(e)=>{
     e.preventDefault();
     if (e.target.nodeName !== 'IMG'){
@@ -22,15 +22,21 @@ gallery.addEventListener('click',(e)=>{
     const imageLink = galleryItems.map(image => image.original)
         .filter(image => image === e.target.dataset.source);
 
-   basicLightbox.create(`<img width="1400" height="900" src="${imageLink[0]}">`,{closable: false}).show();
-   
+  const image =  basicLightbox.create(`<img width="1400" height="900" src="${imageLink[0]}">`,{closable: false});
+  image.show();
+  if (image.visible()) {
+    console.log(image.visible());
+    gallery.addEventListener('keydown',(e)=>{
+        e.target.nodeName === 'A' && e.code === 'Escape' ? image.close() : alert('Press Escape to close');
+    })
+  }
 });
 
-// Closing modal
-gallery.addEventListener('keydown',(e)=>{
-    const image = document.querySelector('.basicLightbox');
-    if(image !== null){
-        e.target.nodeName === 'A' && e.code === 'Escape' ? image.remove() : alert('Press Escape to close');
-    }
-});
+// Closing modal(nu se inghide aceeasi problema)
+// gallery.addEventListener('keydown',(e)=>{
+//     const image = document.querySelector('.basicLightbox');
+//     if(image !== null){
+//         e.target.nodeName === 'A' && e.code === 'Escape' ? image.remove() : alert('Press Escape to close');
+//     }
+// });
 
