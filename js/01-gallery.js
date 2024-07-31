@@ -29,7 +29,7 @@ gallery.addEventListener('click', e => {
   );
   image.show();
   if (image.visible()) {
-    gallery.addEventListener('keydown', e => {
+    gallery.addEventListener('keydown', (e) => {
       e.target.nodeName === 'A' && e.code === 'Escape'
         ? image.close()
         : _.throttle(alert('Press Escape to close'), 500);
