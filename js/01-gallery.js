@@ -5,9 +5,10 @@ const gallery = document.querySelector('.gallery');
 
 // Populating gallery with tumbnails
 galleryItems.forEach(e => {
+  const {preview, original, description} = e
   const img = `<li class='gallery__item'>
-        <a class='gallery__link' href='${e.original}'>
-            <img src='${e.preview}' alt='${e.description}' class='gallery__image' data-source='${e.original}'>
+        <a class='gallery__link' href='${original}'>
+            <img src='${preview}' alt='${description}' class='gallery__image' data-source='${original}'>
         </a>
     </li>`;
   gallery.insertAdjacentHTML('beforeend', img);
@@ -29,17 +30,15 @@ gallery.addEventListener('click', e => {
   );
   image.show();
   if (image.visible()) {
-	const picture = document.querySelector('.basicLightbox__placeholder');
-	picture.classList.add('disable-click');
-    gallery.addEventListener('keydown', (e) => {
-      e.target.nodeName === 'A' && e.code === 'Escape'
-        ? image.close()
-        : _.throttle(alert('Press Escape to close'), 1000);
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Escape') {
+        image.close();
+      }
     });
   }
 });
 
-// Closing modal(nu se inghide aceeasi problema)
+// Closing modal(cand dau click oriunde pe modal )
 // gallery.addEventListener('keydown',(e)=>{
 //     const picture = document.querySelector('.basicLightbox');
 //     if(image !== null){
