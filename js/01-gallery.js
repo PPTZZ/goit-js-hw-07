@@ -33,16 +33,9 @@ gallery.addEventListener('click', e => {
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Escape') {
         image.close();
+      }else{
+        _.debounce(alert('Press Escape to close the image'),1000)
       }
     });
   }
 });
-
-// Closing modal(cand dau click oriunde pe modal )
-// gallery.addEventListener('keydown',(e)=>{
-//     const picture = document.querySelector('.basicLightbox');
-//     if(image !== null){
-// 		image.classList.add('disable-click');
-//         e.target.nodeName === 'A' && e.code === 'Escape' ? image.remove() : _.throttle(alert('Press Escape to close'), 500);
-//     }
-// });
