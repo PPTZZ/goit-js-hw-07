@@ -20,8 +20,8 @@ gallery.addEventListener('click', e => {
     return;
   }
   const imageLink = galleryItems
-    .map(image => image.original)
-    .filter(image => image === e.target.dataset.source);
+    .map(galleryItem => galleryItem.original)
+    .filter(galleryItem => galleryItem === e.target.dataset.source);
 
   const image = basicLightbox.create(
     `<img width="1400" height="900" src="${imageLink[0]}">`,
@@ -29,18 +29,21 @@ gallery.addEventListener('click', e => {
   );
   image.show();
   if (image.visible()) {
+	const picture = document.querySelector('.basicLightbox__placeholder');
+	picture.classList.add('disable-click');
     gallery.addEventListener('keydown', (e) => {
       e.target.nodeName === 'A' && e.code === 'Escape'
         ? image.close()
-        : _.throttle(alert('Press Escape to close'), 500);
+        : _.throttle(alert('Press Escape to close'), 1000);
     });
   }
 });
 
 // Closing modal(nu se inghide aceeasi problema)
 // gallery.addEventListener('keydown',(e)=>{
-//     const image = document.querySelector('.basicLightbox');
+//     const picture = document.querySelector('.basicLightbox');
 //     if(image !== null){
-//         e.target.nodeName === 'A' && e.code === 'Escape' ? image.remove() : alert('Press Escape to close');
+// 		image.classList.add('disable-click');
+//         e.target.nodeName === 'A' && e.code === 'Escape' ? image.remove() : _.throttle(alert('Press Escape to close'), 500);
 //     }
 // });
